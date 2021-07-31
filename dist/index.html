@@ -17,7 +17,7 @@
         <ol>
           {{#students}}
           <li class="my-li">
-            学生{{name}}的爱好是
+            学生{{name}}的年龄是{{age}}岁，爱好是
             <ol>
               {{#hobbies}}
                 <li>{{.}}</li>
@@ -29,9 +29,9 @@
       </div>`
       const data = {
         students: [
-          { name: '小明', hobbies: ['游泳', '健身'] },
-          { name: '小红', hobbies: ['足球', '篮球', '羽毛球'] },
-          { name: '小强', hobbies: ['吃饭', '睡觉'] }
+          { name: '小明', age: 10, hobbies: ['游泳', '健身'] },
+          { name: '小红', age: 12, hobbies: ['足球', '篮球', '羽毛球'] },
+          { name: '小强', age: 15, hobbies: ['吃饭', '睡觉'] }
         ]
       }
       new TemplateEngine('container').render(tempStr, data, (domStr) => {
