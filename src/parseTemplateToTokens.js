@@ -12,7 +12,7 @@ export default function parseTemplateToTokens(templateStr) {
   while (!scanner.pointerIsEnd()) {
     words = scanner.scanUntil('{{')
     if (words != '') {
-      tokens.push(['text', words])
+      tokens.push(['text', words.trim()])
     }
     scanner.scan('{{')
     words = scanner.scanUntil('}}')
@@ -51,7 +51,7 @@ function nestTokens(tokens) {
         collector = token[2]
         break
       case '/':
-        const secPop = section.pop()
+        section.pop()
         section.length > 0 ? (collector = section[section.length - 1][2]) : (collector = nestTokenArr)
         break
       default:

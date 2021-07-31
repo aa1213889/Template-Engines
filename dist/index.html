@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-<body>
-
-  <script src="./bundle.js">
-
-  </script>
-  <script>
-    let tempStr = `  
-    <div>
-      <ol>
-        {{#students}}
-        <li>
-          学生{{item.name}}的爱好是
-          <ol>
-            {{#item.hobbies}}
-            <li>{{.}}</li>
-            {{/item.hobbies}}
-          </ol>
-        </li>
-        {{/students}}
-      </ol>
-    </div>`
-    const data = {
-      thing: '手机',
-      mood: '开心'
-    }
-    new TemplateEngine().render(tempStr, data)
-  </script>
-</body>
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <div id="container"></div>
+    </main>
+    <script src="./bundle.js"></script>
+    <script>
+      let tempStr = `
+      <div>
+        <ol>
+          {{#students}}
+          <li class="my-li">
+            学生{{name}}的爱好是
+            <ol>
+              {{#hobbies}}
+                <li>{{.}}</li>
+              {{/hobbies}}
+            </ol>
+          </li>
+          {{/students}}
+        </ol>
+      </div>`
+      const data = {
+        students: [
+          { name: '小明', hobbies: ['游泳', '健身'] },
+          { name: '小红', hobbies: ['足球', '篮球', '羽毛球'] },
+          { name: '小强', hobbies: ['吃饭', '睡觉'] }
+        ]
+      }
+      new TemplateEngine('container').render(tempStr, data, (domStr) => {
+        console.log('渲染完成', domStr)
+      })
+    </script>
+  </body>
 </html>
